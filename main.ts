@@ -5,10 +5,16 @@ import showBanner from "node-banner";
 import result from "./result.js";
 import { q1,q2 } from "./questions.js";
 
- let banner = () => {
-    showBanner('\n QUIZ', '');
-}; //Immediately invoked Function Expresion. .. IIFE
-banner ();
+
+//The issue of showbanner function resolves by adding promise. As per the suggestion of one of our participant.
+ async function banner () {
+    await new Promise ((res) => {
+        showBanner ('\n QUIZ')
+        setTimeout(res,2000);
+    });
+}
+
+await banner();
 
 
 let answer1 = await q1();
